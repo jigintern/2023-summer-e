@@ -1,6 +1,6 @@
 function init() {
   var Layer_502 = new Array();
-  var map_502 = L.map('map_502').setView([35.430853497716456, 139.6142753630236], 16);
+  var map_502 = L.map('map_502',{maxBounds: [[35.595117671993066, 139.46526938853586],[35.30817425882817, 139.73924092638254]]}).setView([35.430853497716456, 139.6142753630236], 16);
   mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
       L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
