@@ -8,6 +8,7 @@ function init() {
       maxZoom: 18
           }).addTo(map_502);
   Polygon();
+  click_get_position(map_502);
 
 
 function Polygon(){
@@ -134,3 +135,17 @@ Polygons_shape_lnk[ 2 ] = "  ";
   }
   }
 }}
+function click_get_position(map){
+  //クリックイベント
+  let positions=[]
+  map.on('click', function(e) {
+  //クリック位置経緯度取得
+  lat = e.latlng.lat;
+  lng = e.latlng.lng;
+  positions.push([lat,lng]);
+  L.marker([lat,lng]).addTo(map)
+  } );
+  map.on('dblclick',function(e) {
+    console.log(JSON.stringify(positions));
+  })
+}
