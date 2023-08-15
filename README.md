@@ -1,1 +1,1 @@
-2023 Summer Intern E team
+2023 夏 インターン E チーム
