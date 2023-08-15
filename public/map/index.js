@@ -2,11 +2,12 @@ function init() {
   var Layer_502 = new Array();
   var map_502 = L.map('map_502').setView([35.42361899347166, 139.6023174337535], 16);
   mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
-      L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'Map data &copy; ' + mapLink,
-      maxZoom: 18
-          }).addTo(map_502);
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; ' + mapLink,
+    maxZoom: 18,
+    minZoom: 12 // ここに最小値を追加
+        }).addTo(map_502);
   Polygon();
 
 
