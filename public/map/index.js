@@ -11,12 +11,25 @@ function init() {
 
 
 function Polygon(){
+  /** 実際に表示するポリゴンデータの配列 **/
   const Polygons_shape = new Array();
+
+  /** 表示するポリゴンの緯度経度 */
   const Poly_pos = new Array();
+
+  /** 吹き出しの文言 */
   const Poly_nam = new Array();
+
+  /** 吹き出しのリンクがあればここに */
   const Polygons_shape_lnk = new Array();
+
+  /** 枠線の色 */
   const edge_col = new Array();
+
+  /** ポリゴンの塗りつぶしの色 */
   const Polygons_fillcolor = new Array();
+
+  /** 枠線の幅 */
   const Line_W = 2;
 
   Poly_pos[ 0 ] = [
