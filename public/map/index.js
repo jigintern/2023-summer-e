@@ -15,7 +15,7 @@ function Polygon(){
   const Poly_pos = new Array();
   const Poly_nam = new Array();
   const Polygons_shape_lnk = new Array();
-  const Polygons_strokecol = new Array();
+  const edge_col = new Array();
   const Polygons_fillcolor = new Array();
   const Line_W = 2;
 
@@ -56,7 +56,7 @@ function Polygon(){
       [35.42487960005232, 139.60325470846655],
       [35.42503144274411, 139.60299526761773]
   ];
-  Polygons_strokecol[ 0 ] = "000000";
+  edge_col[ 0 ] = "FFFF00";
   Polygons_fillcolor[ 0 ] = "FFFF00";
   Poly_nam[ 0 ] = "Polygons Sample #001";
   Polygons_shape_lnk[ 0 ] = "  ";
@@ -67,7 +67,7 @@ function Polygon(){
               [ 35.0, 139.5 ],
               [ 35.0, 138.5 ],
               ];
-  Polygons_strokecol[ 1 ] = "FF0000";
+  edge_col[ 1 ] = "FF0000";
   Polygons_fillcolor[ 1 ] = "FF0000";
   Poly_nam[ 1 ] = "Polygons Sample #002";
   Polygons_shape_lnk[ 1 ] = "  ";
@@ -75,7 +75,7 @@ function Polygon(){
   for (i = 0; i <= (Poly_pos.length - 1);i++){
   if (Poly_pos[ i ] != null){
       Polygons_shape[ i ] = L.polygon([ Poly_pos[ i ] ],
-      { color: "#" + Polygons_strokecol[ i ],
+      { color: "#" + edge_col[ i ],
           fillColor: "#" + Polygons_fillcolor[ i ],
           weight: Line_W,
           fillopacity: 0.5
