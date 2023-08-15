@@ -117,8 +117,26 @@ Poly_pos[ 2 ] = [
 ];
 edge_col[ 2 ] = "FFFF00";
 Polygons_fillcolor[ 2 ] = "FFFF00";
-Poly_nam[ 2 ] = "Polygons Sample #001";
+Poly_nam[ 2 ] = "Polygons Sample #002";
 Polygons_shape_lnk[ 2 ] = "  ";
+
+Poly_pos[ 3 ] = [
+  [35.441599,139.632753],
+  [35.443173,139.635329],
+  [35.444886,139.632517],
+  [35.443330,139.628761],
+  [35.442211,139.627580],
+  [35.441241,139.626571],
+  [35.440035,139.625112],
+  [35.439354,139.623996],
+  [35.438847,139.623008],
+  [35.437082,139.623287],
+  [35.440891,139.632560]
+];
+edge_col[ 3 ] = "FFFF00";
+Polygons_fillcolor[ 3 ] = "FFFF00";
+Poly_nam[ 3 ] = "Polygons Sample #003";
+Polygons_shape_lnk[ 3 ] = "  ";
 
   for (i = 0; i <= (Poly_pos.length - 1);i++){
   if (Poly_pos[ i ] != null){
