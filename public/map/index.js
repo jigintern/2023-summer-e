@@ -347,16 +347,28 @@ function Polygon(){
   }
 }}
 function click_get_position(map){
+  // マーカー達の座標
+  let positions=[];
+  // マーカー達の存在
+  let markers=[];
   //クリックイベント
-  let positions=[]
   map.on('click', function(e) {
-  //クリック位置経緯度取得
-  lat = e.latlng.lat;
-  lng = e.latlng.lng;
-  positions.push([lat,lng]);
-  L.marker([lat,lng]).addTo(map)
+    //クリック位置経緯度取得
+    lat = e.latlng.lat;
+    lng = e.latlng.lng;
+    positions.push([lat,lng]);
+    markers.push(L.marker([lat,lng]).addTo(map));
   } );
   map.on('dblclick',function(e) {
     console.log(JSON.stringify(positions));
   })
+  document.addEventListener('keypress', keypress_ivent);
+  function keypress_ivent(e) {
+    if(e.key === 'd' && markers.length > 0){
+      map.removeLayer(markers[markers.length - 1]);
+      markers.pop();
+      positions.pop();
+    }
+    return false; 
+  }
 }
