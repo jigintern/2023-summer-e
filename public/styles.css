@@ -52,3 +52,14 @@
     z-index: 10;
 }
 /*場合によっては、position: absolute;の入った関数を追加する*/
+
+#map {
+    height: 100%;
+    z-index: 1;
+  }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
