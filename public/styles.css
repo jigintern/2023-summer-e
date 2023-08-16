@@ -25,26 +25,30 @@
     margin: 0;
     padding: 0;
     width: 33%;
-    height: 100px;
+    height: 10%;
     position: fixed;
     left: 0px;
     bottom: 0px;
+    z-index: 10;
 }
 #btn_right{
     margin: 0;
     padding: 0;
     width: 33%;
-    height: 100px;
+    height: 10%;
     position: fixed;
     right: 0px;
     bottom: 0px;
+    z-index: 10;
 }
 #btn_center{
     margin: 0;
     padding: 0;
     width: 33%;
-    height: 100px;
+    height: 10%;
     position: fixed;
     left: 33.5%;
     bottom: 0px;
+    z-index: 10;
 }
+/*場合によっては、position: absolute;の入った関数を追加する*/
