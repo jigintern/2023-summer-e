@@ -538,6 +538,8 @@ function img(map) {
     }else if (e.key === 'm'){
       adjustedHeight = 0.05392521537811676;
       adjustedWidth = -0.09181833114624112;
+    }else if (e.key === 'n'){
+      console.log('adjustedHeight:',adjustedHeight,'　　　　adjustedWidth:',adjustedWidth);
     }
     imageBounds = [
       [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
