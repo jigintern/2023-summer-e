@@ -7,28 +7,30 @@
     height=480,
     initial-scale=1.0,
     minimum-scale=1.0,
-    maximun-scale=2.0,
-    user-scalable=yes"/>
-    <title>internship</title>
+    maximum-scale=2.0,
+    user-scalable=no"/>
+    <title>test</title>
 
     <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
     <script src = "https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
 
-    <link href="styles.css" rel="stylesheet" type="text/css" />
-    <script src="map.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="test.js"></script>
 </head>
 <body onload="init()">
 
+    <!-- 地図の表示 -->
     <div id="map_502" style="width: 100%; height: 90%; border: solid 1px"></div>
 
+    <!-- ボタン -->
     <div class="tab-wrap">
-        <input id="TAB-01" type="checkbox" name="TAB" class="tab-switch" onchange=""/>
+       <input id="TAB-01" type="checkbox" name="TAB" class="tab-switch"/>
         <label class="tab-label" id="btn_left" for="TAB-01">
             ボタン 1
         </label>
         <div class="tab-content">
-            <!--重ねるものその１-->
-        </div>
+            <!-- 重ねるものその１ -->
+        </div> 
         <input id="TAB-02" type="checkbox" name="TAB" class="tab-switch" />
         <label class="tab-label" id="btn_center" for="TAB-02">
             ボタン 2
