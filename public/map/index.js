@@ -428,29 +428,50 @@ function init() {
     Poly_class[33] = 2;
 
     
-    for (i = 0; i <= (Poly_pos.length - 1);i++){
-    if (Poly_pos[ i ] != null){
-      if(Poly_class[i] === 2){
-        edge_col[i] = "FF0000";
-        fill_col[i] = "FF0000";
-      }else if(Poly_class[i] === 1){
-        edge_col[i] = "FFFF00";
-        fill_col[i] = "FFFF00";
+    for (i = 0; i < (Poly_pos.length);i++){
+      if (Poly_pos[ i ] != null){
+        if(Poly_class[i] === 2){
+          edge_col[i] = "FF0000";
+          fill_col[i] = "FF0000";
+        }else if(Poly_class[i] === 1){
+          edge_col[i] = "FFFF00";
+          fill_col[i] = "FFFF00";
+        }
+        Poly_nam[i] = i;
+        Polygons_shape_lnk[i] = "";
+        Polygons_shape[ i ] = L.polygon([ Poly_pos[ i ] ],
+        { color: "#" + edge_col[ i ],
+            fillColor: "#" + fill_col[ i ],
+            weight: Line_W,
+            fillopacity: 0.5
+        });
+        Polygons_shape[ i ].bindPopup(Poly_nam[ i ] + "<br>" + Polygons_shape_lnk[ i ]);
+        Layer_502[ i ] = Polygons_shape[ i ];
+        Layer_502[ i ].addTo(map_502);
       }
-      Poly_nam[i] = i;
-      Polygons_shape_lnk[i] = "";
-      Polygons_shape[ i ] = L.polygon([ Poly_pos[ i ] ],
-      { color: "#" + edge_col[ i ],
-          fillColor: "#" + fill_col[ i ],
-          weight: Line_W,
-          fillopacity: 0.5
-      });
-      Polygons_shape[ i ].bindPopup(Poly_nam[ i ] + "<br>" + Polygons_shape_lnk[ i ]);
-      Layer_502[ i ] = Polygons_shape[ i ];
-      Layer_502[ i ].addTo(map_502);
     }
+    for(i = 0;i < Poly_pos.length;i++){
+      if(Poly_class[i] === 2){
+        map_502.removeLayer(Layer_502[i]);
+      }
     }
-  }}
+  }
+}
+
+function onClicked(id){
+  obj = document.getElementById(id);
+  if(obj.checked){
+    switch(id){
+      case "TAB-01":
+        break;
+      case "TAB-02":
+        break;
+      case "TAB-03":
+        break;
+    }
+  }
+}
+
 function click_get_position(map){
   // マーカー達の座標
   let positions=[];
@@ -476,7 +497,7 @@ function click_get_position(map){
     }
     return false; 
   }
-document.addEventListener('DOMContentLoaded', img(map));
+  document.addEventListener('DOMContentLoaded', img(map));
 }
 function img(map) {
   const imageInput = document.getElementById('imageInput');
