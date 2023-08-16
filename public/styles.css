@@ -1,3 +1,50 @@
-body {
-    background: skyblue;
+.tab-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+.tab-label {
+    color: White;
+    background: LightGray;
+}
+.tab-content {
+    width: 100%;
+    display: none;
+}
+/* アクティブなタブ */
+.tab-switch:checked+.tab-label {
+    background: DeepSkyBlue;
+}
+.tab-switch:checked+.tab-label+.tab-content {
+     display: block;
+}
+/* ラジオボタン非表示 */
+.tab-switch {
+    display: none;
+}
+#btn_left{
+    margin: 0;
+    padding: 0;
+    width: 33%;
+    height: 100px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+}
+#btn_right{
+    margin: 0;
+    padding: 0;
+    width: 33%;
+    height: 100px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+}
+#btn_center{
+    margin: 0;
+    padding: 0;
+    width: 33%;
+    height: 100px;
+    position: fixed;
+    left: 33.5%;
+    bottom: 0px;
 }
