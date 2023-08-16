@@ -1,17 +1,50 @@
-/* 
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. a
- */
-#map {
-  height: 100%;
+.tab-wrap {
+  display: flex;
+  flex-wrap: wrap;
 }
-
-/* 
- * Optional: Makes the sample page fill the window. 
- */
-html,
-body {
-  height: 100%;
+.tab-label {
+  color: White;
+  background: LightGray;
+}
+.tab-content {
+  width: 100%;
+  display: none;
+}
+/* アクティブなタブ */
+.tab-switch:checked+.tab-label {
+  background: DeepSkyBlue;
+}
+.tab-switch:checked+.tab-label+.tab-content {
+   display: block;
+}
+/* ラジオボタン非表示 */
+.tab-switch {
+  display: none;
+}
+#btn_left{
   margin: 0;
   padding: 0;
+  width: 33%;
+  height: 100px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+}
+#btn_right{
+  margin: 0;
+  padding: 0;
+  width: 33%;
+  height: 100px;
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+}
+#btn_center{
+  margin: 0;
+  padding: 0;
+  width: 33%;
+  height: 100px;
+  position: fixed;
+  left: 33.5%;
+  bottom: 0px;
 }
