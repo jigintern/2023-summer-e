@@ -450,11 +450,11 @@ function init() {
         Layer_502[ i ].addTo(map_502);
       }
     }
-    for(i = 0;i < Poly_pos.length;i++){
-      if(Poly_class[i] === 2){
-        map_502.removeLayer(Layer_502[i]);
-      }
-    }
+    // for(i = 0;i < Poly_pos.length;i++){
+    //   if(Poly_class[i] === 2){
+    //     map_502.removeLayer(Layer_502[i]);
+    //   }
+    // }
   }
 }
 
