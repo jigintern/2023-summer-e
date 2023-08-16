@@ -363,7 +363,7 @@ function click_get_position(map){
   })
   document.addEventListener('keypress', keypress_ivent);
   function keypress_ivent(e) {
-    if(e.key === 'd' && markers.length > 0){
+    if(e.key === 'x' && markers.length > 0){
       map.removeLayer(markers[markers.length - 1]);
       markers.pop();
       positions.pop();
@@ -376,16 +376,30 @@ function img(map) {
   const imageInput = document.getElementById('imageInput');
   let imageOverlay = null;
   let imageVisible = false;
+  let adjustedWidth = 10;
+  let adjustedHeight = 10;
   imageInput.addEventListener('change', function(event) {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       const imageUrl = URL.createObjectURL(selectedFile);
+      const imageWidth = map.getBounds().getWest() - map.getBounds().getEast();
+      const imageHeight = map.getBounds().getNorth() - map.getBounds().getSouth();
+      adjustedWidth = imageWidth;
+      adjustedHeight = imageHeight;
+      let imageBounds = [
+        [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
+        [map.getCenter().lat + adjustedHeight / 2, map.getCenter().lng + adjustedWidth / 2]
+      ];
       // 画像を地図に被せて表示
-      imageOverlay = L.imageOverlay(imageUrl, map.getBounds(),{
+      imageOverlay = L.imageOverlay(imageUrl, imageBounds,{
       opacity: 0.6}).addTo(map);
       // イベントリスナーを追加して画像が変更されたときに地図の範囲を更新
       map.on('move', function() {
-        imageOverlay.setBounds(map.getBounds());
+        imageBounds = [
+          [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
+          [map.getCenter().lat + adjustedHeight / 2, map.getCenter().lng + adjustedWidth / 2]
+        ];
+        imageOverlay.setBounds(imageBounds);
       });
     } else {
       // 画像を削除
@@ -396,8 +410,8 @@ function img(map) {
       });
     }
   });
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'p' || event.key === 'P') {
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'p') {
       if (imageOverlay) {
         if (imageVisible) {
           map.removeLayer(imageOverlay);
@@ -407,6 +421,19 @@ function img(map) {
           imageVisible = true;
         }
       }
+    }else if (e.key === 'w'){
+      adjustedHeight += 0.0001;
+    }else if (e.key === 's'){
+      adjustedHeight -= 0.0001;
+    }else if (e.key === 'd'){
+      adjustedWidth -= 0.0001;
+    }else if (e.key === 'a'){
+      adjustedWidth += 0.0001;
     }
+    imageBounds = [
+      [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
+      [map.getCenter().lat + adjustedHeight / 2, map.getCenter().lng + adjustedWidth / 2]
+    ];
+    imageOverlay.setBounds(imageBounds);
   });
 }
