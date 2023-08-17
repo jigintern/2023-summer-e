@@ -5,17 +5,23 @@
 /*画像を貼り付ける*/
 .tab-label_left {
     background-image: url("./img/土砂崩れ改.png");
-    background-size: 100% 100%;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
     background-color:white;
 }
 .tab-label_center {
     background-image: url("./img/洪水改.png");
-    background-size: 100% 100%;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
     background-color:white;
 }
 .tab-label_right {
     background-image: url("./img/避難所改.png");
-    background-size: 100% 100%;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
     background-color:white;
 }
 .tab-content {
