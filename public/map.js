@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import { normalize } from 'https://cdn.skypack.dev/@geolonia/normalize-japanese-addresses';
-function init() {
-  var Layer_502 = new Array();
-  var map_502 = L.map('map_502',{maxBounds: [[35.595117671993066, 139.46526938853586], [35.30817425882817, 139.73924092638254]]}).setView([35.430853497716456, 139.6142753630236], 16);
-    const mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
-=======
 var Layer_502,map_502;
 /** 実際に表示するポリゴンデータの配列 **/
 const Polygons_shape = new Array();
@@ -37,7 +30,6 @@ function init() {
   Layer_502 = new Array();
   map_502 = L.map('map_502',{maxBounds: [[35.595117671993066, 139.46526938853586], [35.30817425882817, 139.73924092638254]]}).setView([35.430853497716456, 139.6142753630236], 16);
     mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
->>>>>>> e7e9b36be7817bd92d02e782b68f66756e0e9529
       L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; ' + mapLink,
@@ -545,17 +537,7 @@ function init() {
     Poly_class[68] = 1;
 
     
-<<<<<<< HEAD
-    for (let i = 0; i <= (Poly_pos.length - 1);i++){
-    if (Poly_pos[ i ] != null){
-      if(Poly_class[i] === 2){
-        edge_col[i] = "FF0000";
-        fill_col[i] = "FF0000";
-      }else if(Poly_class[i] === 1){
-        edge_col[i] = "FFFF00";
-        fill_col[i] = "FFFF00";
-=======
-    for (i = 0; i < (Poly_pos.length);i++){
+    for (let i = 0; i < (Poly_pos.length);i++){
       if (Poly_pos[ i ] != null){
         if(Poly_class[i] === 2){
           edge_col[i] = "FF0000";
@@ -566,7 +548,6 @@ function init() {
         }
         Poly_nam[i] = i;
         Polygons_shape_lnk[i] = "";
->>>>>>> e7e9b36be7817bd92d02e782b68f66756e0e9529
       }
     }
     mark_pos[0] = [35.4365302, 139.626539];
@@ -612,7 +593,7 @@ function disp(id){
         }
       }
     }
-<<<<<<< HEAD
+  }else{
     //避難所
     const redIcon = L.icon({
       iconUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon.png",
@@ -625,22 +606,10 @@ function disp(id){
       shadowSize: [41, 41],
       className: "icon-red", // <= ここでクラス名を指定
     });
-    /*const Shelterss = ["南区高根町２丁目14番地","南区中村町１丁目66番地","南区中村町４丁目269番地","南区山王町５丁目31番地","南区蒔田町1020番地","南区大橋町３丁目49番地","南区井土ケ谷上町２番１号","南区永田北二丁目６番12号","南区南太田一丁目17番１号","南区三春台42番地","南区中里一丁目６番16号","南区六ツ川三丁目４番12号","南区大岡四丁目10番１号","南区永田みなみ台６番１号","南区六ツ川三丁目65番地","南区別所六丁目３番１号","南区六ツ川二丁目156番地","南区平楽１番地","南区東蒔田町１番地","南区六ツ川一丁目14番地","南区花之木町２丁目45番地","南区六ツ川三丁目81番地","南区別所三丁目６番１号","南区永田みなみ台７番１号","南区大岡四丁目44番１号"]
-    for(let i=0;i<Shelterss.length;i++){
-    normalize("神奈川県横浜市"+Shelterss[i]).then(result => {
-      console.log(Shelterss[i])
-      L.marker([result['lat'],result['lng']],{icon: redIcon}).addTo(map_502);
-  });}*/
-  const Shelters = [[35.435339762572944,139.59182495489588],[35.433741280278284,139.58774929344145],[35.432783406503944,139.5890850335309],[35.42916724217852,139.57876998796564],[35.428961660378214,139.58040613546476],[35.42883870077397,139.5839118582808],[35.417230207698694,139.5821412080841],[35.424767806278304,139.57787109629865],[35.42670443728187,139.59696997219],[35.4328409737965,139.59992855154272],[35.41369225507227,139.59083875899526],[35.41100639769299,139.60630712550486],[35.4122926554816,139.60497674983347],[35.418940247636556,139.59902493392295],[35.425732940151256,139.61329337173086],[35.43123484246866,139.633603242728],[35.432616298688124,139.62611987957644],[35.43412026998389,139.63581517000424],[35.44092779054957,139.61723248739875],[35.435275936703356,139.61115590145712],[35.435275936703356,139.6111505370391],[35.43215381339653,139.60993736705862],[35.425810521674485,139.6010396107886],[35.43296902826734,139.61682492783441],[35.435391484435655,139.61672185236242],[35.43637576974077,139.6266442537308],[35.43637576974077,139.6266442537308]]
-  for(let i=0;i<Shelters.length;i++){
-    L.marker(Shelters[i],{icon: redIcon}).addTo(map_502);
-  }
-  }}
-=======
-  }else{
+    
     for (i = 0; i < (mark_pos.length);i++){
       if (mark_pos[ i ] != null){
-        mark.push(L.marker(mark_pos[i]).addTo(map_502));
+        mark.push(L.marker(mark_pos[i], {icon:redIcon}).addTo(map_502));
       }
     }
   }
@@ -692,7 +661,6 @@ function onClicked(id){
   }
 }
 
->>>>>>> e7e9b36be7817bd92d02e782b68f66756e0e9529
 function click_get_position(map){
   // マーカー達の座標
   let positions=[];

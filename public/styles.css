@@ -83,14 +83,10 @@
   }
 html,
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-<<<<<<< HEAD
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 .icon-red { /* icon-redは最初に指定したクラス名 */
     filter: hue-rotate(150deg);
-  }
-=======
 }
->>>>>>> e7e9b36be7817bd92d02e782b68f66756e0e9529
