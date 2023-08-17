@@ -1,6 +1,31 @@
+var Layer_502,map_502;
+/** 実際に表示するポリゴンデータの配列 **/
+const Polygons_shape = new Array();
+
+/** 表示するポリゴンの緯度経度 */
+const Poly_pos = new Array();
+
+/** 吹き出しの文言 */
+const Poly_nam = new Array();
+
+/** 吹き出しのリンクがあればここに */
+const Polygons_shape_lnk = new Array();
+
+/** 土砂災害でない(0)か土砂災害黄(1)か土砂災害赤(2)かを表すパラメータ */
+const Poly_class = new Array();
+
+/** 枠線の色 */
+const edge_col = new Array();
+
+/** ポリゴンの塗りつぶしの色 */
+const fill_col = new Array();
+
+/** 枠線の幅 */
+const Line_W = 2;
+
 function init() {
-  var Layer_502 = new Array();
-  var map_502 = L.map('map_502',{maxBounds: [[35.595117671993066, 139.46526938853586], [35.30817425882817, 139.73924092638254]]}).setView([35.430853497716456, 139.6142753630236], 16);
+  Layer_502 = new Array();
+  map_502 = L.map('map_502',{maxBounds: [[35.595117671993066, 139.46526938853586], [35.30817425882817, 139.73924092638254]]}).setView([35.430853497716456, 139.6142753630236], 16);
     mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
       L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -11,30 +36,6 @@ function init() {
   click_get_position(map_502);
   
   function Polygon(){
-    /** 実際に表示するポリゴンデータの配列 **/
-    const Polygons_shape = new Array();
-
-    /** 表示するポリゴンの緯度経度 */
-    const Poly_pos = new Array();
-
-    /** 吹き出しの文言 */
-    const Poly_nam = new Array();
-
-    /** 吹き出しのリンクがあればここに */
-    const Polygons_shape_lnk = new Array();
-
-    /** 土砂災害でない(0)か土砂災害黄(1)か土砂災害赤(2)かを表すパラメータ */
-    const Poly_class = new Array();
-
-    /** 枠線の色 */
-    const edge_col = new Array();
-
-    /** ポリゴンの塗りつぶしの色 */
-    const fill_col = new Array();
-
-    /** 枠線の幅 */
-    const Line_W = 2;
-
     Poly_pos[ 0 ] = [
         [35.43518798495131,139.61048126220706],
         [35.43388111203584,139.6107602119446],
@@ -427,55 +428,75 @@ function init() {
     Poly_pos[33] = [[35.427076617194395,139.5983630593753],[35.42698479596064,139.59829868670977],[35.426958561303216,139.59841670326324]];
     Poly_class[33] = 2;
 
-    Poly_pos[34] = [[35.41558444866561, 139.6021507443294], [35.415112418336776, 139.60185046178495], [35.415077453017254, 139.6017861155254], [35.41465786799928, 139.60249392438018], [35.41485017807038, 139.60268696315876], [35.415304727323075, 139.60245102687384],[35.415514518421006, 139.60240812936752]];
-    Poly_class[34] = 1;
-
-    Poly_pos[35] = [[35.4156513327243, 139.6022609211912], [35.415406372328185, 139.60213219775585], [35.415266394624595, 139.60232528290888], [35.41503893033767, 139.602496914156], [35.415143913934514, 139.6026470914972], [35.41535388071784, 139.6026685454031], [35.415371377925084, 139.60241109853246], [35.41549385826942, 139.60243255243833]];
-    Poly_class[35] = 2;
-   
-    Poly_pos[36] = [[35.414742808301924, 139.6027758488286], [35.41463782418248, 139.60228240899315], [35.4146903162593, 139.60198205431067], [35.4143053735686, 139.60176751525174], [35.414025414093054, 139.60236822461673], [35.41414576097892, 139.60273320841904], [35.41439072520735, 139.60269030060726], [35.41454820181811, 139.6030121091956], [35.414863154116354, 139.60292629357204]];
-    Poly_class[36] = 1;
-  
-    Poly_pos[37] = [[35.4146696352601, 139.60277585259485], [35.41459964579878, 139.6024754979124], [35.41445966669381, 139.60238968228884], [35.414494661492824, 139.60204641979456], [35.41440717446674, 139.6020035119828], [35.41421470267494, 139.60198205807686], [35.414092220386266, 139.60234677447704], [35.41426719502738, 139.6022609588535], [35.41435468220547, 139.6024969518183], [35.4144771640952, 139.60256131353597]];
-    Poly_class[37] = 2;
-
-    Poly_pos[38] = [[35.41626208478996, 139.6038913803766], [35.416139605613374, 139.60395574209429], [35.41626208478996, 139.60395574209429]];
-    Poly_class[38] = 2;
-
-    Poly_pos[39] = [[35.41606961742888, 139.60344084835293], [35.41591214379146, 139.6039342881884], [35.41577216696651, 139.6039342881884], [35.41585965251058, 139.60414882724734], [35.41605212037325, 139.60410591943554]];
-    Poly_class[39] = 2;
-
-    Poly_pos[40] = [[35.41640206076384, 139.60386992647074], [35.41626208478996, 139.6036982952236], [35.41634956980215, 139.6035910256942], [35.41617459968282, 139.60344084835293], [35.416122108572964, 139.60318340148226], [35.41582465830437, 139.6032692171058], [35.41566718418824, 139.6038913803766], [35.415947137959705, 139.60429900458857], [35.416122108572964, 139.60410591943554], [35.41631457580868, 139.60421318896502]];
-    Poly_class[40] = 1;
-
-    Poly_pos[41] = [[35.41853856453398, 139.6060588688966], [35.41850357149127, 139.60532943609633], [35.418311109484485, 139.60535089000223], [35.41822362660218, 139.60571560640238], [35.41808365379285, 139.60571560640238], [35.41796117738522, 139.60522216656688], [35.417733720705705, 139.6051578048492], [35.418013667297004, 139.60584432983774], [35.418276116342945, 139.6058872376495], [35.41834610261083, 139.60550106734348], [35.418416088817914, 139.60558688296703], [35.4184860749642, 139.6061232306143]];
-    Poly_class[41] = 2;
-
-
     
-    for (i = 0; i <= (Poly_pos.length - 1);i++){
-    if (Poly_pos[ i ] != null){
-      if(Poly_class[i] === 2){
-        edge_col[i] = "FF0000";
-        fill_col[i] = "FF0000";
-      }else if(Poly_class[i] === 1){
-        edge_col[i] = "FFFF00";
-        fill_col[i] = "FFFF00";
+    for (i = 0; i < (Poly_pos.length);i++){
+      if (Poly_pos[ i ] != null){
+        if(Poly_class[i] === 2){
+          edge_col[i] = "FF0000";
+          fill_col[i] = "FF0000";
+        }else if(Poly_class[i] === 1){
+          edge_col[i] = "FFFF00";
+          fill_col[i] = "FFFF00";
+        }
+        Poly_nam[i] = i;
+        Polygons_shape_lnk[i] = "";
       }
-      Poly_nam[i] = i;
-      Polygons_shape_lnk[i] = "";
+    }
+  }
+}
+function disp(id){
+  for (i = 0; i < (Poly_pos.length);i++){
+    if (Poly_pos[ i ] != null){
       Polygons_shape[ i ] = L.polygon([ Poly_pos[ i ] ],
       { color: "#" + edge_col[ i ],
           fillColor: "#" + fill_col[ i ],
           weight: Line_W,
           fillopacity: 0.5
       });
-      Polygons_shape[ i ].bindPopup(Poly_nam[ i ] + "<br>" + Polygons_shape_lnk[ i ]);
-      Layer_502[ i ] = Polygons_shape[ i ];
-      Layer_502[ i ].addTo(map_502);
+      if(Poly_class[i] === id){
+        Polygons_shape[ i ].bindPopup(Poly_nam[ i ] + "<br>" + Polygons_shape_lnk[ i ]);
+        Layer_502[ i ] = Polygons_shape[ i ];
+        Layer_502[ i ].addTo(map_502);
+      }
     }
+  }
+}
+function onClicked(id){
+  obj = document.getElementById(id);
+  if(obj.checked){
+    switch(id){
+      case "TAB-01":
+        disp(0);
+        break;
+      case "TAB-02":
+        disp(1);
+        disp(2);
+        break;
+      case "TAB-03":
+        break;
     }
-  }}
+  }else{
+    switch(id){
+      case "TAB-01":
+        for(i = 0;i < Poly_pos.length;i++){
+          if(Poly_class[i] === 0){
+            map_502.removeLayer(Layer_502[i]);
+          }
+        }
+        break;
+      case "TAB-02":
+        for(i = 0;i < Poly_pos.length;i++){
+          if(Poly_class[i] === 1 || Poly_class[i] === 2){
+            map_502.removeLayer(Layer_502[i]);
+          }
+        }
+        break;
+      case "TAB-03":
+        break;
+    }
+  }
+}
+
 function click_get_position(map){
   // マーカー達の座標
   let positions=[];
@@ -501,7 +522,7 @@ function click_get_position(map){
     }
     return false; 
   }
-document.addEventListener('DOMContentLoaded', img(map));
+  document.addEventListener('DOMContentLoaded', img(map));
 }
 function img(map) {
   const imageInput = document.getElementById('imageInput');
@@ -564,7 +585,7 @@ function img(map) {
       adjustedHeight = 0.05392521537811676;
       adjustedWidth = -0.09181833114624112;
     }else if (e.key === 'n'){
-      console.log('adjustedHeight:',adjustedHeight,'　　　　adjustedWidth:',adjustedWidth);
+      console.log('adjustedHeight:',adjustedHeight,'adjustedWidth:',adjustedWidth);
     }
     imageBounds = [
       [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
