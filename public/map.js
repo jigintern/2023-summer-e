@@ -788,10 +788,10 @@ function onClicked(id){
   obj = document.getElementById(id);
   if(obj.checked){
     switch(id){
-      case "TAB-01":
+      case "TAB-02":
         disp(0);
         break;
-      case "TAB-02":
+      case "TAB-01":
         disp(1);
         disp(2);
         break;
@@ -801,10 +801,10 @@ function onClicked(id){
     }
   }else{
     switch(id){
-      case "TAB-01":
+      case "TAB-02":
         hidden(0);
         break;
-      case "TAB-02":
+      case "TAB-01":
         hidden(1);
         hidden(2);
         break;
