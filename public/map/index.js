@@ -5,6 +5,9 @@ const Polygons_shape = new Array();
 /** 表示するポリゴンの緯度経度 */
 const Poly_pos = new Array();
 
+/** 表示するマーカーの緯度経度 */
+const mark_pos = new Array();
+
 /** 吹き出しの文言 */
 const Poly_nam = new Array();
 
@@ -442,22 +445,70 @@ function init() {
         Polygons_shape_lnk[i] = "";
       }
     }
+    mark_pos[0] = [35.4365302, 139.626539];
+    mark_pos[1] = [35.4343020, 139.635744];
+    mark_pos[2] = [35.4329346, 139.625782];
+    mark_pos[3] = [35.4355920, 139.616604];
+    mark_pos[4] = [35.4259638, 139.600761];
+    mark_pos[5] = [35.4327328, 139.599527];
+    mark_pos[6] = [35.4355800, 139.591575];
+    mark_pos[7] = [35.4354363, 139.610977];
+    mark_pos[8] = [35.4409681, 139.617595];
+    mark_pos[9] = [35.4190625, 139.599254];
+    mark_pos[10] = [35.4124032, 139.604843];
+    mark_pos[11] = [35.4328137, 139.589378];
+    mark_pos[12] = [35.4285792, 139.580920];
+    mark_pos[13] = [35.4168963, 139.581796];
+    mark_pos[14] = [35.4312665, 139.633326];
+    mark_pos[15] = [35.4326667, 139.616836];
+    mark_pos[16] = [35.4268106, 139.597473];
+    mark_pos[17] = [35.4321641, 139.609968];
+    mark_pos[18] = [35.4289387, 139.578451];
+    mark_pos[19] = [35.4138582, 139.590794];
+    mark_pos[20] = [35.4332113, 139.587215];
+    mark_pos[21] = [35.4107756, 139.606015];
   }
 }
+
+let mark = [];
 function disp(id){
-  for (i = 0; i < (Poly_pos.length);i++){
-    if (Poly_pos[ i ] != null){
-      Polygons_shape[ i ] = L.polygon([ Poly_pos[ i ] ],
-      { color: "#" + edge_col[ i ],
-          fillColor: "#" + fill_col[ i ],
-          weight: Line_W,
-          fillopacity: 0.5
-      });
-      if(Poly_class[i] === id){
-        Polygons_shape[ i ].bindPopup(Poly_nam[ i ] + "<br>" + Polygons_shape_lnk[ i ]);
-        Layer_502[ i ] = Polygons_shape[ i ];
-        Layer_502[ i ].addTo(map_502);
+  if(id != 3){
+    for (i = 0; i < (Poly_pos.length);i++){
+      if (Poly_pos[ i ] != null){
+        Polygons_shape[ i ] = L.polygon([ Poly_pos[ i ] ],
+        { color: "#" + edge_col[ i ],
+            fillColor: "#" + fill_col[ i ],
+            weight: Line_W,
+            fillopacity: 0.5
+        });
+        if(Poly_class[i] === id){
+          Polygons_shape[ i ].bindPopup(Poly_nam[ i ] + "<br>" + Polygons_shape_lnk[ i ]);
+          Layer_502[ i ] = Polygons_shape[ i ];
+          Layer_502[ i ].addTo(map_502);
+        }
       }
+    }
+  }else{
+    for (i = 0; i < (mark_pos.length);i++){
+      if (mark_pos[ i ] != null){
+        mark.push(L.marker(mark_pos[i]).addTo(map_502));
+      }
+    }
+  }
+}
+function hidden(id){
+  if(id != 3){
+    for(i = 0;i < Poly_pos.length;i++){
+      if(Poly_class[i] === id){
+        map_502.removeLayer(Layer_502[i]);
+      }
+    }
+  }else{
+    for(i = mark_pos.length - 1;i >= 0;i--){
+        map_502.removeLayer(mark[i]);
+        mark.pop();
+        console.log(mark_pos.length);
+        console.log(mark.length);
     }
   }
 }
@@ -473,25 +524,20 @@ function onClicked(id){
         disp(2);
         break;
       case "TAB-03":
+        disp(3);
         break;
     }
   }else{
     switch(id){
       case "TAB-01":
-        for(i = 0;i < Poly_pos.length;i++){
-          if(Poly_class[i] === 0){
-            map_502.removeLayer(Layer_502[i]);
-          }
-        }
+        hidden(0);
         break;
       case "TAB-02":
-        for(i = 0;i < Poly_pos.length;i++){
-          if(Poly_class[i] === 1 || Poly_class[i] === 2){
-            map_502.removeLayer(Layer_502[i]);
-          }
-        }
+        hidden(1);
+        hidden(2);
         break;
       case "TAB-03":
+        hidden(3);
         break;
     }
   }
