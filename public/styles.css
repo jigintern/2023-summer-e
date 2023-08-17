@@ -26,7 +26,7 @@
 }
 /* アクティブなタブ */
 .tab-switch_left:checked+.tab-label_left {
-    background-color:lavender;
+    background-color:llightgray;
 }
 .tab-switch_left:checked+.tab-label_left{
      display: block;
@@ -34,14 +34,14 @@
 
 .tab-switch_center:checked+.tab-label_center {
     
-    background-color:lavender;
+    background-color:lightgray;
 }
 .tab-switch_rightcenter:checked+.tab-label_center{
      display: block;
 }
 
 .tab-switch_right:checked+.tab-label_right {
-    background-color:lavender;
+    background-color:lightgray;
 }
 .tab-switch_right:checked+.tab-label_right{
      display: block;
