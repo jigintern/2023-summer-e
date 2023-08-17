@@ -2,26 +2,47 @@
     display: flex;
     flex-wrap: wrap;
 }
-.tab-label {
-    color: White;
-    background-image: url("なんかの画像");
+/*画像を貼り付ける*/
+.tab-label_left {
+    background-image: url("./img/土砂崩れ改.png");
     background-size: 100% 100%;
+    background-color:white;
+}
+.tab-label_center {
+    background-image: url("./img/洪水改.png");
+    background-size: 100% 100%;
+    background-color:white;
 }
 .tab-content {
     width: 100%;
     display: none;
 }
 /* アクティブなタブ */
+.tab-switch_left:checked+.tab-label_left {
+    background-image: url("./img/土砂崩れ改.png");
+    background-size: 100% 100%;
+    background-color:lavender;
+}
+.tab-switch_left:checked+.tab-label_left+.tab-content {
+     display: block;
+}
+
+.tab-switch_center:checked+.tab-label_center {
+    background-image: url("./img/洪水改.png");
+    background-size: 100% 100%;
+    background-color:lavender;
+}
+.tab-switch_rightcenter:checked+.tab-label_center+.tab-content {
+     display: block;
+}
+
 .tab-switch:checked+.tab-label {
     background: DeepSkyBlue;
 }
 .tab-switch:checked+.tab-label+.tab-content {
      display: block;
 }
-/* ラジオボタン非表示 */
-.tab-switch {
-    display: none;
-}
+
 /*ボタンの配置*/
 #btn_left{
     margin: 0;
