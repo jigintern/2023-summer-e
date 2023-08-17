@@ -758,4 +758,3 @@ function img(map) {
     imageOverlay.setBounds(imageBounds);
   });
 }
-window.addEventListener('load', init)
