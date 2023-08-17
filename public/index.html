@@ -19,21 +19,21 @@
 </head>
 <body onload="init()">
     <!-- 地図の表示 -->
-    <div id="map_502" style="width: 100%; height: 90%; border: solid 1px"></div>
+    <div id="map_502" style="width: 100%; height: 90vh"></div>
 
     <!-- ボタン -->
     <div class="tab-wrap">
-       <input id="TAB-01" type="checkbox" name="TAB" class="tab-switch_left"/>
+       <input id="TAB-01" type="checkbox" name="TAB" class="tab-switch_left" onclick="onClicked(id)"/>
         <label class="tab-label_left" id="btn_left" for="TAB-01"></label>
         <div class="tab-content">
             <!-- 重ねるものその１　消すかもしれない -->
         </div> 
-        <input id="TAB-02" type="checkbox" name="TAB" class="tab-switch_center" />
+        <input id="TAB-02" type="checkbox" name="TAB" class="tab-switch_center" onclick="onClicked(id)"/>
         <label class="tab-label_center" id="btn_center" for="TAB-02"></label>
         <div class="tab-content">
             <!--重ねるものその２　消すかもしれない-->
         </div>
-        <input id="TAB-03" type="checkbox" name="TAB" class="tab-switch_right" />
+        <input id="TAB-03" type="checkbox" name="TAB" class="tab-switch_right" onclick="onClicked(id)"/>
         <label class="tab-label_right" id="btn_right" for="TAB-03"></label>
         <div class="tab-content">
             <!--重ねるものその３　消すかもしれない-->
