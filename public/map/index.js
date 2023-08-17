@@ -1,6 +1,31 @@
+var Layer_502,map_502;
+/** 実際に表示するポリゴンデータの配列 **/
+const Polygons_shape = new Array();
+
+/** 表示するポリゴンの緯度経度 */
+const Poly_pos = new Array();
+
+/** 吹き出しの文言 */
+const Poly_nam = new Array();
+
+/** 吹き出しのリンクがあればここに */
+const Polygons_shape_lnk = new Array();
+
+/** 土砂災害でない(0)か土砂災害黄(1)か土砂災害赤(2)かを表すパラメータ */
+const Poly_class = new Array();
+
+/** 枠線の色 */
+const edge_col = new Array();
+
+/** ポリゴンの塗りつぶしの色 */
+const fill_col = new Array();
+
+/** 枠線の幅 */
+const Line_W = 2;
+
 function init() {
-  var Layer_502 = new Array();
-  var map_502 = L.map('map_502',{maxBounds: [[35.595117671993066, 139.46526938853586], [35.30817425882817, 139.73924092638254]]}).setView([35.430853497716456, 139.6142753630236], 16);
+  Layer_502 = new Array();
+  map_502 = L.map('map_502',{maxBounds: [[35.595117671993066, 139.46526938853586], [35.30817425882817, 139.73924092638254]]}).setView([35.430853497716456, 139.6142753630236], 16);
     mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
       L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -11,30 +36,6 @@ function init() {
   click_get_position(map_502);
   
   function Polygon(){
-    /** 実際に表示するポリゴンデータの配列 **/
-    const Polygons_shape = new Array();
-
-    /** 表示するポリゴンの緯度経度 */
-    const Poly_pos = new Array();
-
-    /** 吹き出しの文言 */
-    const Poly_nam = new Array();
-
-    /** 吹き出しのリンクがあればここに */
-    const Polygons_shape_lnk = new Array();
-
-    /** 土砂災害でない(0)か土砂災害黄(1)か土砂災害赤(2)かを表すパラメータ */
-    const Poly_class = new Array();
-
-    /** 枠線の色 */
-    const edge_col = new Array();
-
-    /** ポリゴンの塗りつぶしの色 */
-    const fill_col = new Array();
-
-    /** 枠線の幅 */
-    const Line_W = 2;
-
     Poly_pos[ 0 ] = [
         [35.43518798495131,139.61048126220706],
         [35.43388111203584,139.6107602119446],
@@ -439,32 +440,56 @@ function init() {
         }
         Poly_nam[i] = i;
         Polygons_shape_lnk[i] = "";
-        Polygons_shape[ i ] = L.polygon([ Poly_pos[ i ] ],
-        { color: "#" + edge_col[ i ],
-            fillColor: "#" + fill_col[ i ],
-            weight: Line_W,
-            fillopacity: 0.5
-        });
+      }
+    }
+  }
+}
+function disp(id){
+  for (i = 0; i < (Poly_pos.length);i++){
+    if (Poly_pos[ i ] != null){
+      Polygons_shape[ i ] = L.polygon([ Poly_pos[ i ] ],
+      { color: "#" + edge_col[ i ],
+          fillColor: "#" + fill_col[ i ],
+          weight: Line_W,
+          fillopacity: 0.5
+      });
+      if(Poly_class[i] === id){
         Polygons_shape[ i ].bindPopup(Poly_nam[ i ] + "<br>" + Polygons_shape_lnk[ i ]);
         Layer_502[ i ] = Polygons_shape[ i ];
         Layer_502[ i ].addTo(map_502);
       }
     }
-    // for(i = 0;i < Poly_pos.length;i++){
-    //   if(Poly_class[i] === 2){
-    //     map_502.removeLayer(Layer_502[i]);
-    //   }
-    // }
   }
 }
-
 function onClicked(id){
   obj = document.getElementById(id);
   if(obj.checked){
     switch(id){
       case "TAB-01":
+        disp(0);
         break;
       case "TAB-02":
+        disp(1);
+        disp(2);
+        break;
+      case "TAB-03":
+        break;
+    }
+  }else{
+    switch(id){
+      case "TAB-01":
+        for(i = 0;i < Poly_pos.length;i++){
+          if(Poly_class[i] === 0){
+            map_502.removeLayer(Layer_502[i]);
+          }
+        }
+        break;
+      case "TAB-02":
+        for(i = 0;i < Poly_pos.length;i++){
+          if(Poly_class[i] === 1 || Poly_class[i] === 2){
+            map_502.removeLayer(Layer_502[i]);
+          }
+        }
         break;
       case "TAB-03":
         break;
@@ -560,7 +585,7 @@ function img(map) {
       adjustedHeight = 0.05392521537811676;
       adjustedWidth = -0.09181833114624112;
     }else if (e.key === 'n'){
-      console.log('adjustedHeight:',adjustedHeight,'　　　　adjustedWidth:',adjustedWidth);
+      console.log('adjustedHeight:',adjustedHeight,'adjustedWidth:',adjustedWidth);
     }
     imageBounds = [
       [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
