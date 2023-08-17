@@ -13,14 +13,17 @@
     background-size: 100% 100%;
     background-color:white;
 }
+.tab-label_right {
+    background-image: url("./image/避難所改.png");
+    background-size: 100% 100%;
+    background-color:white;
+}
 .tab-content {
     width: 100%;
     display: none;
 }
 /* アクティブなタブ */
 .tab-switch_left:checked+.tab-label_left {
-    background-image: url("./img/土砂崩れ改.png");
-    background-size: 100% 100%;
     background-color:lavender;
 }
 .tab-switch_left:checked+.tab-label_left+.tab-content {
@@ -28,18 +31,17 @@
 }
 
 .tab-switch_center:checked+.tab-label_center {
-    background-image: url("./img/洪水改.png");
-    background-size: 100% 100%;
+    
     background-color:lavender;
 }
 .tab-switch_rightcenter:checked+.tab-label_center+.tab-content {
      display: block;
 }
 
-.tab-switch:checked+.tab-label {
-    background: DeepSkyBlue;
+.tab-switch_right:checked+.tab-label_right {
+    background-color:lavender;
 }
-.tab-switch:checked+.tab-label+.tab-content {
+.tab-switch_right:checked+.tab-label_right+.tab-content {
      display: block;
 }
 
