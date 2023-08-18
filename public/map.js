@@ -3264,5 +3264,5 @@ document.addEventListener('keypress', function (e){
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-  setInterval(init,750);
+  setTimeout(init,750);
 });
