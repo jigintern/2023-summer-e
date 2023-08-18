@@ -1506,14 +1506,15 @@ function click_get_position(map){
   // マーカー達の存在
   let markers=[];
   //クリックイベント
-  map.on('click', function(e) {
+  map.on('click', click);
+  function click(e) {
     //クリック位置経緯度取得
     let lat = e.latlng.lat;
     let lng = e.latlng.lng;
     map.removeLayer(polygon);
     positions.push([lat,lng]);
     polygon=L.polygon(positions,{color: 'green'}).addTo(map);
-  } );
+  }
   map.on('dblclick',function(e) {
     console.log(JSON.stringify(positions));
   })
@@ -1553,7 +1554,7 @@ function click_get_position(map){
     }else if(e.key === "g"){
       document.removeEventListener('keypress', keypress_ivent);
       map.removeLayer(polygon);
-      map.off();
+      map.off(click);
       for(i = 0;i < polygons.length;i++)map.removeLayer(polygons[i]);
       polygon = [];
       positions = [];
