@@ -1706,31 +1706,53 @@ function init() {
         Polygons_shape_lnk[i] = "";
       }
     }
+
+    // 南区
     mark_pos[0] = [35.4365302, 139.626539];
+    mark_name[0] = '南吉田小学校';
     mark_pos[1] = [35.4343020, 139.635744];
+    mark_name[1] = '石川小学校';
     mark_pos[2] = [35.4329346, 139.625782];
+    mark_name[2] = '中村小学校';
     mark_pos[3] = [35.4355920, 139.616604];
+    mark_name[3] = '日枝小学校';
     mark_pos[4] = [35.4259638, 139.600761];
+    mark_name[4] = '大岡小学校';
     mark_pos[5] = [35.4327328, 139.599527];
+    mark_name[5] = '井土ケ谷小学校';
     mark_pos[6] = [35.4355800, 139.591575];
+    mark_name[6] = '永田小学校';
     mark_pos[7] = [35.4354363, 139.610977];
+    mark_name[7] = '南太田小学校';
     mark_pos[8] = [35.4409681, 139.617595];
+    mark_name[8] = '太田小学校';
     mark_pos[9] = [35.4190625, 139.599254];
+    mark_name[9] = '南小学校';
     mark_pos[10] = [35.4124032, 139.604843];
+    mark_name[10] = '藤の木小学校';
     mark_pos[11] = [35.4328137, 139.589378];
+    mark_name[11] = '永田台小学校';
     mark_pos[12] = [35.4285792, 139.580920];
+    mark_name[12] = '六つ川台小学校';
     mark_pos[13] = [35.4168963, 139.581796];
+    mark_name[13] = '別所小学校';
     mark_pos[14] = [35.4312665, 139.633326];
+    mark_name[14] = '平楽中学校';
     mark_pos[15] = [35.4326667, 139.616836];
+    mark_name[15] = '共進中学校';
     mark_pos[16] = [35.4268106, 139.597473];
+    mark_name[16] = '南中学校';
     mark_pos[17] = [35.4321641, 139.609968];
+    mark_name[17] = '蒔田中学校';
     mark_pos[18] = [35.4289387, 139.578451];
+    mark_name[18] = '六ツ川中学校';
     mark_pos[19] = [35.4138582, 139.590794];
+    mark_name[19] = '南が丘中学校';
     mark_pos[20] = [35.4332113, 139.587215];
+    mark_name[20] = '永田中学校';
     mark_pos[21] = [35.4107756, 139.606015];
-    for (let i=0;i<21;i++){
-      mark_name[i]= "aaaa";
-    }
+    mark_name[21] = '藤の木中学校';
+
     //西区
     const nisiku_hinan_name=["横浜市立東小学校",
     "横浜市立稲荷台小学校",
@@ -1786,7 +1808,7 @@ function disp(id){
     
     for (i = 0; i < (mark_pos.length);i++){
       if (mark_pos[ i ] != null){
-        mark.push(L.marker(mark_pos[i], {icon:redIcon}).bindPopup(mark_name[i]).bindTooltip(mark_name[i]).addTo(map_502));
+        mark.push(L.marker(mark_pos[i], {icon:redIcon}).bindPopup(mark_name[i]).addTo(map_502));
       }
     }
   }
