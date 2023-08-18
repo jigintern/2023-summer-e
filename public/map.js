@@ -1607,7 +1607,6 @@ document.addEventListener('keypress', function (e){
     if(debug){
       img(map_502);
       click_get_position(map_502);
-      console.log("tr");
     }
     debug = !debug;
   }
