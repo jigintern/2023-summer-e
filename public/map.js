@@ -28,6 +28,10 @@ const fill_col = new Array();
 const Line_W = 2;
 
 function init() {
+
+  let load=document.getElementById('loading');
+  load.style.display='none';
+
   Layer_502 = new Array();
   map_502 = L.map('map_502',{maxBounds: [[35.595117671993066, 139.46526938853586], [35.30817425882817, 139.73924092638254]]}).setView([35.430853497716456, 139.6142753630236], 13);
   mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
