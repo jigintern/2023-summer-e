@@ -29,15 +29,17 @@ const Line_W = 2;
 function init() {
   Layer_502 = new Array();
   map_502 = L.map('map_502',{maxBounds: [[35.595117671993066, 139.46526938853586], [35.30817425882817, 139.73924092638254]]}).setView([35.430853497716456, 139.6142753630236], 16);
-    mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
-      L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; ' + mapLink,
       maxZoom: 18,minZoom: 12
-          }).addTo(map_502);
-          img(map_502);
+    }
+  ).addTo(map_502);
+
   Polygon();
-  click_get_position(map_502);
+  // img(map_502);
+  // click_get_position(map_502);
   
   function Polygon(){
     Poly_pos[ 0 ] = [
@@ -1510,7 +1512,6 @@ function click_get_position(map){
     let lng = e.latlng.lng;
     map.removeLayer(polygon);
     positions.push([lat,lng]);
-    //markers.push(L.marker([lat,lng]).addTo(map));
     polygon=L.polygon(positions,{color: 'green'}).addTo(map);
   } );
   map.on('dblclick',function(e) {
@@ -1519,7 +1520,6 @@ function click_get_position(map){
   document.addEventListener('keypress', keypress_ivent);
   function keypress_ivent(e) {
     if(e.key === 'x' && (markers.length > 0 || polygon != null)){
-      //map.removeLayer(markers[markers.length - 1]);
       map.removeLayer(polygon);
       markers.pop();
       positions.pop();
@@ -1550,49 +1550,21 @@ function click_get_position(map){
       positionss.pop();
       polygons.pop();
       colors.pop();
+    }else if(e.key === "g"){
+      document.removeEventListener('keypress', keypress_ivent);
+      map.removeLayer(polygon);
+      map.off();
+      for(i = 0;i < polygons.length;i++)map.removeLayer(polygons[i]);
+      polygon = [];
+      positions = [];
+      colors = [];
+      positionss = [];
+      polygons = [];
     }
-    return false; 
+    return;
   }
-  document.addEventListener('DOMContentLoaded', img(map));
 }
 function img(map) {
-  /*const imageInput = document.getElementById('imageInput');
-  let imageOverlay = null;
-  let imageVisible = false;
-  let adjustedWidth = 10;
-  let adjustedHeight = 10;
-  imageInput.addEventListener('change', function(event) {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
-      const imageUrl = URL.createObjectURL(selectedFile);
-      const imageWidth = map.getBounds().getWest() - map.getBounds().getEast();
-      const imageHeight = map.getBounds().getNorth() - map.getBounds().getSouth();
-      adjustedWidth = imageWidth;
-      adjustedHeight = imageHeight;
-      let imageBounds = [
-        [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
-        [map.getCenter().lat + adjustedHeight / 2, map.getCenter().lng + adjustedWidth / 2]
-      ];
-      // 画像を地図に被せて表示
-      imageOverlay = L.imageOverlay(imageUrl, imageBounds,{
-      opacity: 0.6}).addTo(map);
-      // イベントリスナーを追加して画像が変更されたときに地図の範囲を更新
-      map.on('move', function() {
-        imageBounds = [
-          [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
-          [map.getCenter().lat + adjustedHeight / 2, map.getCenter().lng + adjustedWidth / 2]
-        ];
-        imageOverlay.setBounds(imageBounds);
-      });
-    } else {
-      // 画像を削除
-      map.eachLayer(layer => {
-        if (layer instanceof L.ImageOverlay) {
-          map.removeLayer(layer);
-        }
-      });
-    }
-  });*/
     const imageUrl = "dosya.png"; // 画像のパス
     let imageOverlay = null;
     let imageVisible = false;
@@ -1610,15 +1582,8 @@ function img(map) {
       opacity: 0.6
     }).addTo(map);
   
-    // イベントリスナーを追加して画像が変更されたときに地図の範囲を更新
-    /*map.on('move', function() {
-      imageBounds = [
-        [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
-        [map.getCenter().lat + adjustedHeight / 2, map.getCenter().lng + adjustedWidth / 2]
-      ];
-      imageOverlay.setBounds(imageBounds);
-    });*/
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown',onoff);
+  function onoff(e){
     if (e.key === 'p') {
       if (imageOverlay) {
         if (imageVisible) {
@@ -1629,25 +1594,21 @@ function img(map) {
           imageVisible = true;
         }
       }
-    }/*else if (e.key === 'w'){
-      adjustedHeight += 0.0001;
-    }else if (e.key === 's'){
-      adjustedHeight -= 0.0001;
-    }else if (e.key === 'd'){
-      adjustedWidth -= 0.0001;
-    }else if (e.key === 'a'){
-      adjustedWidth += 0.0001;
-    }else if (e.key === 'm'){
-      adjustedHeight =  0.0428;
-      adjustedWidth = 0.0742;
-    }else if (e.key === 'n'){
-      console.log('adjustedHeight:',adjustedHeight,'adjustedWidth:',adjustedWidth);
-      console.log(imageBounds)
+    }else if(e.key === "g"){
+      map.removeLayer(imageOverlay);
+      document.removeEventListener("keydown",onoff);
     }
-    imageBounds = [
-      [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
-      [map.getCenter().lat + adjustedHeight / 2, map.getCenter().lng + adjustedWidth / 2]
-    ];
-    imageOverlay.setBounds(imageBounds);*/
-  });
+  }
 }
+
+var debug = true;
+document.addEventListener('keypress', function (e){
+  if(e.key === "g"){
+    if(debug){
+      img(map_502);
+      click_get_position(map_502);
+      console.log("tr");
+    }
+    debug = !debug;
+  }
+});
