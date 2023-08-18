@@ -35,6 +35,7 @@ function init() {
       attribution: 'Map data &copy; ' + mapLink,
       maxZoom: 18,minZoom: 12
           }).addTo(map_502);
+          img(map_502);
   Polygon();
   click_get_position(map_502);
   
@@ -1495,7 +1496,11 @@ function onClicked(id){
 
 function click_get_position(map){
   // マーカー達の座標
+  let polygon=[];
+  let polygons=[];
   let positions=[];
+  let positionss=[];
+  let colors=[];
   // マーカー達の存在
   let markers=[];
   //クリックイベント
@@ -1503,25 +1508,55 @@ function click_get_position(map){
     //クリック位置経緯度取得
     let lat = e.latlng.lat;
     let lng = e.latlng.lng;
+    map.removeLayer(polygon);
     positions.push([lat,lng]);
-    markers.push(L.marker([lat,lng]).addTo(map));
+    //markers.push(L.marker([lat,lng]).addTo(map));
+    polygon=L.polygon(positions,{color: 'green'}).addTo(map);
   } );
   map.on('dblclick',function(e) {
     console.log(JSON.stringify(positions));
   })
   document.addEventListener('keypress', keypress_ivent);
   function keypress_ivent(e) {
-    if(e.key === 'x' && markers.length > 0){
-      map.removeLayer(markers[markers.length - 1]);
+    if(e.key === 'x' && (markers.length > 0 || polygon != null)){
+      //map.removeLayer(markers[markers.length - 1]);
+      map.removeLayer(polygon);
       markers.pop();
       positions.pop();
+      polygon=L.polygon(positions,{color: 'green'}).addTo(map);
+    }else if((e.key === 'r' || e.key === 'y') && positions.length > 0){
+      console.log(JSON.stringify(positions));
+      positionss.push(positions);
+      map.removeLayer(polygon);
+      if (e.key ==='r'){
+        colors.push(2);
+        polygons.push(L.polygon(positions,{color: 'purple'}).addTo(map));
+      }else{
+        colors.push(1);
+        polygons.push(L.polygon(positions,{color: 'blue'}).addTo(map));
+      }
+      polygon=[];
+      positions=[];
+    }else if(e.key === 'Enter' && positionss.length > 0){
+      console.log(" ");
+      let s="";
+      for(let i=0;i<positionss.length;i++){
+        s+="Poly_pos[ ;"+"; + "+String(i+1)+ " ] = "+JSON.stringify(positionss[i])+";"
+        s+="Poly_class[ ;"+"; + "+String(i+1)+ " ] = "+ colors[i] +";"
+      }
+      console.log(s)
+    }else if(e.key === 'q' && colors.length > 0 && positions.length == 0){
+      map.removeLayer(polygons[polygons.length-1]);
+      positionss.pop();
+      polygons.pop();
+      colors.pop();
     }
     return false; 
   }
   document.addEventListener('DOMContentLoaded', img(map));
 }
 function img(map) {
-  const imageInput = document.getElementById('imageInput');
+  /*const imageInput = document.getElementById('imageInput');
   let imageOverlay = null;
   let imageVisible = false;
   let adjustedWidth = 10;
@@ -1557,7 +1592,32 @@ function img(map) {
         }
       });
     }
-  });
+  });*/
+    const imageUrl = "dosya.png"; // 画像のパス
+    let imageOverlay = null;
+    let imageVisible = false;
+    let adjustedWidth =  10;
+    let adjustedHeight = 10;
+    let imageBounds = [
+      [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
+      [map.getCenter().lat + adjustedHeight / 2, map.getCenter().lng + adjustedWidth / 2]
+    ];
+    //　正確に合わせてね
+    const imageBoundss=[[35.40528, 139.5677],[35.4483, 139.64164]]
+    
+    // 画像を地図に被せて表示
+    imageOverlay = L.imageOverlay(imageUrl, imageBoundss, {
+      opacity: 0.6
+    }).addTo(map);
+  
+    // イベントリスナーを追加して画像が変更されたときに地図の範囲を更新
+    /*map.on('move', function() {
+      imageBounds = [
+        [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
+        [map.getCenter().lat + adjustedHeight / 2, map.getCenter().lng + adjustedWidth / 2]
+      ];
+      imageOverlay.setBounds(imageBounds);
+    });*/
   document.addEventListener('keydown', function(e) {
     if (e.key === 'p') {
       if (imageOverlay) {
@@ -1569,7 +1629,7 @@ function img(map) {
           imageVisible = true;
         }
       }
-    }else if (e.key === 'w'){
+    }/*else if (e.key === 'w'){
       adjustedHeight += 0.0001;
     }else if (e.key === 's'){
       adjustedHeight -= 0.0001;
@@ -1578,15 +1638,16 @@ function img(map) {
     }else if (e.key === 'a'){
       adjustedWidth += 0.0001;
     }else if (e.key === 'm'){
-      adjustedHeight = 0.05392521537811676;
-      adjustedWidth = -0.09181833114624112;
+      adjustedHeight =  0.0428;
+      adjustedWidth = 0.0742;
     }else if (e.key === 'n'){
       console.log('adjustedHeight:',adjustedHeight,'adjustedWidth:',adjustedWidth);
+      console.log(imageBounds)
     }
     imageBounds = [
       [map.getCenter().lat - adjustedHeight / 2, map.getCenter().lng - adjustedWidth / 2],
       [map.getCenter().lat + adjustedHeight / 2, map.getCenter().lng + adjustedWidth / 2]
     ];
-    imageOverlay.setBounds(imageBounds);
+    imageOverlay.setBounds(imageBounds);*/
   });
 }
