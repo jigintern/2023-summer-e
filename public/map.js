@@ -1506,8 +1506,8 @@ function click_get_position(map){
   // マーカー達の存在
   let markers=[];
   //クリックイベント
-  map.on('click', click);
-  function click(e) {
+  map.on('click', clk);
+  function clk(e) {
     //クリック位置経緯度取得
     let lat = e.latlng.lat;
     let lng = e.latlng.lng;
@@ -1554,7 +1554,7 @@ function click_get_position(map){
     }else if(e.key === "g"){
       document.removeEventListener('keypress', keypress_ivent);
       map.removeLayer(polygon);
-      map.off(click);
+      map.off("click");
       for(i = 0;i < polygons.length;i++)map.removeLayer(polygons[i]);
       polygon = [];
       positions = [];
