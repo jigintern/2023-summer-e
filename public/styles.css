@@ -81,9 +81,7 @@
 #map {
     height: 100%;
   }
-html{
-    height: -webkit-fill-available;
-}
+html,
 body {
     height: 100%;
     margin: 0;
