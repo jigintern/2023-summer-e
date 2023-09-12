@@ -2041,3 +2041,6 @@ document.addEventListener('keypress', function (e){
     debug = !debug;
   }
 });
+document.addEventListener("DOMContentLoaded", function(){
+  setTimeout(init,750);
+});
